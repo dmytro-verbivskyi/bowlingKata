@@ -1,12 +1,5 @@
 version: 2
-jobs:
-   build:
-     docker:
-       - image: circleci/java:8
-     steps:
-       - checkout
-       - run: echo "hello world"
-   test:
-     post:
-       - mkdir -p $CIRCLE_TEST_REPORTS/junit/
-       - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
+test:
+  post:
+    - mkdir -p $CIRCLE_TEST_REPORTS/junit/
+    - find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} $CIRCLE_TEST_REPORTS/junit/ \;
