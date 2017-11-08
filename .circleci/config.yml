@@ -4,12 +4,11 @@ jobs:
     docker:
       - image: circleci/java:8
   steps:
+    - checkout
     - run:
-      name: Save test results
+      name: Run JUnits
       command: |
-        mkdir -p ~/junit/
-        find . -type f -regex ".*/target/surefire-reports/.*xml" -exec cp {} ~/junit/ \;
-      when: always
+        mvn test
     - store_test_results:
         path: ~/junit
     - store_artifacts:
